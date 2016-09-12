@@ -30,10 +30,10 @@ You are expected to master the following parts of Java.
 	- Inheritance
 	- Polymorphism
 	- Boxing and Unboxing for primitive types
-	- Some simple *design patterns* that helps on data abstraction
+	- Some simple **design patterns** that helps on data abstraction
 - Java I/O
 	- Reader vs. InputStream \| Writer vs. OutputStream
-	- File I/O
+	- **File I/O**
 	- Memory I/O
 - String Manipulation
 	- Concatenation, division, cutting for substring, etc.
@@ -46,6 +46,10 @@ You are expected to master the following parts of Java.
 Also, you are exptected to gain the following abilities.
 
 - Git
+	- Basic VCS operations: 
+
+	> Add / delete / commit / push / pull
+
 	- Branching and merging
 	- Stashing and unstashing
 - Debugging
