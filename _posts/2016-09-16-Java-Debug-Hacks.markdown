@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Java Debug Hacks"
-date:       2016-09-11 12:00:00
+date:       2016-09-16 20:00:00
 author:     "Java Course Staff"
 header-img: "img/post1.jpg"
 header-mask: 0.3
