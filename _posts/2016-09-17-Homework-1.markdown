@@ -1,0 +1,71 @@
+---
+layout:     post
+title:      "Homework 1"
+date:       2016-09-17 1:00:00
+author:     "Java Course Staff"
+header-img: "img/post1.jpg"
+header-mask: 0.3
+catalog:    true
+---
+
+**Homework 1**<br>
+Topic: **Multithread Programming & Debugging**<br>
+Due: Not yet confirmed.
+
+-----------
+
+## Java Debug Hacks
+
+#### Material
+First, please read the tutorial of debug hacks. Link: [Java Debug Hacks (CHN)](https://iss-java.github.io/2016/09/16/Java-Debug-Hacks/)<br>
+And **clone** the code to practice with: [code repo](https://github.com/iss-java/DebugHack.git)<br>
+
+#### Objectives
+**Objective A**<br>
+
+> Practice _adding watchpoint_, _modifying variable_, _conditional breakpoint_, _switching threads_. Note that if you are debugging the multithreaded version of code, you should combine conditional breakpoint and thread switching together. This will help you get an experience of thread execution.
+
+**Objective B**<br>
+
+> Answer: in function `quickMultiply`, what does a `CyclicBarrier` serve for? Why the barrier value is 5 instead of 4? What's the consequence of changing it into 4?
+
+#### Submission
+
+For Objective A, you are expected to make a screenshot for each debug hack, and give a short explanation of **your** purpose for each one.<br>
+For both objectives, you can write them into a single document or two(doc, docx, pdf, markdown). **Append** your document(s) to your "Doubly-linked list" homework.
+
+## Doubly Linked List
+
+#### Materials
+
+The material you need is the source code of a uni-threaded linked list. [code repo](https://github.com/iss-java/DoublyLinkedList.git).<br>
+
+
+#### Readings
+
+You are expected to read about how the following things are done in Java. 
+- create a thread
+- start a thread
+- protect critical data
+
+At least, you have to master the usage of `Mutex`. If you apply an advanced synchronization mechanism, such as 
+a `reader-writer lock`, to improve the degree of concurrency - you will get extra credits.
+
+#### Requirements
+
+**Requirement A**<br>
+> Refactor `Node` with a locking(synchronization) mechanism you like. Ensure that the `data` field of a `Node` will not be corrupted if read/written by multiple threads. Also, write a test case in `Main_A.main()` which starts multiple threads to read/write the same node.
+
+Hint for Requirement A: You can create multiple threads to increase/decrease the value of `data`. If the final result of `data` is mathematically correct, then your program must be correct.
+
+**Requirement B**<br>
+> Refactor `MyList` with a locking mechanism you like. Ensure that the data structure of the doubly-linked list will not be corrupted if some nodes are inserted/removed simultaneously by multiple threads. Also, write a test case in `Main_B.main()` which starts multiple threads to insert into / remove from the same list.
+
+Hint for Requirement B: Traverse and back-traverse your list to check whether or not your list is broken.
+
+**Requirement C**<br>
+> Refactor `Node` and `MyList` to ensure that insertion and removal can only be applied to nodes that belongs to the caller linked list.
+
+#### Submission
+
+Push your improved version to **your own** Git repo. This repo should be **private** and enroll us TAs as **collaborators**. Read the comments in the code carefully, and don't modify the original directory structure and the class structures. However, you can rename the project root folder and add your own functions, packages, classes and data files as you like.
