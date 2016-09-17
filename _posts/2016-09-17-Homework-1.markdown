@@ -9,7 +9,7 @@ catalog:    true
 ---
 
 **Homework 1**<br>
-Topic: Multithread Programming & Debugging
+Topic: Multithread Programming & Debugging<br>
 **Due: (GMT+8) 2016-10-09 09:00 SUN**
 
 -----------
