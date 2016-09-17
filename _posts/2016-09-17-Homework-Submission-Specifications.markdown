@@ -17,7 +17,7 @@ ___
 
 * register your own account [Here](http://git.oschina.net/)
 * **Attention**: when you register your account, please make sure that your url is 'iss'+your student number
-![](https://raw.githubusercontent.com/iss-java/iss-java.github.io/master/img/instruction_1.png)  
+![](img/Submission-instruction/instruction_1.png)  
 
 ---
 
@@ -25,11 +25,11 @@ ___
 
 * create your own private project
 
-![](https://raw.githubusercontent.com/iss-java/iss-java.github.io/master/img/instruction_3.png) 
+![](img/Submission-instruction/instruction_3.png) 
 
 * select the private option 
 
-![](https://raw.githubusercontent.com/iss-java/iss-java.github.io/master/img/instruction_2.png)  
+![](img/Submission-instruction/instruction_2.png)  
 
 ---
 
@@ -62,7 +62,7 @@ $ git remote add origin 'SSH Address'
 ```
 
 The SSH address of your repo may look like this one:
-![](https://raw.githubusercontent.com/iss-java/iss-java.github.io/master/img/instruction_4.png)  
+![](img/Submission-instruction/instruction_4.png)  
 
 *3) If your OSChina git repo is not empty, you need to pull it first.*
 
@@ -111,7 +111,7 @@ For detailed Git tutorial, please go to [廖雪峰的Git博客](http://www.liaox
 #### Step 5:
 
 * Add our TA as a project member
-![](https://raw.githubusercontent.com/iss-java/iss-java.github.io/master/img/instruction_5.png)
+![](img/Submission-instruction/instruction_5.png)
 * We will grab all the project right after the deadline. 
 
 ## [What's More](http://git.mydoc.io/?t=84110)
