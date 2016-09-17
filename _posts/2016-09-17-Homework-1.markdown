@@ -53,17 +53,20 @@ a `reader-writer lock`, to improve the degree of concurrency - you will get extr
 
 #### Requirements
 
-**Requirement A**<br>
+**Requirement A**
+
 > Refactor `Node` with a locking(synchronization) mechanism you like. Ensure that the `data` field of a `Node` will not be corrupted if read/written by multiple threads. Also, write a test case in `Main_A.main()` which starts multiple threads to read/write the same node.
 
 Hint for Requirement A: You can create multiple threads to increase/decrease the value of `data`. If the final result of `data` is mathematically correct, then your program must be correct.
 
-**Requirement B**<br>
+**Requirement B**
+
 > Refactor `MyList` with a locking mechanism you like. Ensure that the data structure of the doubly-linked list will not be corrupted if some nodes are inserted/removed simultaneously by multiple threads. Also, write a test case in `Main_B.main()` which starts multiple threads to insert into / remove from the same list.
 
 Hint for Requirement B: Traverse and back-traverse your list to check whether or not your list is broken.
 
-**Requirement C**<br>
+**Requirement C**
+
 > Refactor `Node` and `MyList` to ensure that insertion and removal can only be applied to nodes that belongs to the caller linked list.
 
 #### Submission
