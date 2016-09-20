@@ -26,7 +26,7 @@ catalog:    true
 
 - `print`
 - `println`
-- `printf`  至少尝试2个整数格式+2个浮点数格式。格式占位符语法参照(Java Format Syntax)[https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html#syntax]。
+- `printf`  至少尝试2个整数格式+2个浮点数格式。格式占位符语法参照 (Java Format Syntax)[https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html#syntax] 。
 
 > 以上内容的测试可以跟Scanner的测试代码结合在一起。
 
