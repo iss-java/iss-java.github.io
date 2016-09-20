@@ -1,0 +1,23 @@
+---
+layout:     post
+title:      "Exercise 1"
+date:       2016-09-20 10:00:00
+author:     "Java Course Staff"
+header-img: "img/post1.jpg"
+header-mask: 0.3
+catalog:    true
+---
+
+## Exercise 1
+
+#### Specifications
+
+实验1：
+
+写一个程序，通过System类调用out静态域获取 printstream对象，测试printstream对象中包括print方法，println方法及printf方法在内的各种方法，通过printf方法调用实现控制格式输出。在同一个程序中，调用system类的静态域in，实现基于键盘的输入控制。
+
+实验2：
+完成第3.8节关于GUI的例子。
+
+#### Submission
+和大作业的方式一样。项目命名请用`exercise_x`的格式。提交代码，实验2请附加GUI效果截图。不需要写说明文档。
