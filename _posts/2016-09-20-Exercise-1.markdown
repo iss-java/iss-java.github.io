@@ -20,5 +20,32 @@ catalog:    true
 完成Java How To Program 第九版 第3.8节关于GUI的例子。<br>
 电子书已经上传到群文件。
 
+#### (Update) Functions to test
+
+**PrintWriter**
+
+- `print`
+- `println`
+- `printf`  至少尝试2个整数格式+2个浮点数格式。格式占位符语法参照(Java Format Syntax)[https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html#syntax]。
+
+> 以上内容的测试可以跟Scanner的测试代码结合在一起。
+
+**Scanner**
+
+- `hasnext`
+- `next`
+- `nextDouble` 请尝试普通写法和科学计数法两种输入。
+- `nextInt` 在正常读取整数字符串之外，请尝试用nextInt读浮点数字符串，以及用nextDouble读整数字符串。
+
+> 请尝试用扫描到的内容来**控制程序逻辑**。
+
+**InputStream**
+
+- `close`  验证：内层`System.in`关闭之后，外层`Scanner`还能正常工作吗？
+
+**加分项**
+尝试用CMD或Shell中的I/O重定向，把标准输入、标准输出定向到文件。需要提供运行的命令的截图。
+
 #### Submission
+
 和大作业的方式一样。项目命名请用`exercise_x`的格式。提交代码，实验2请附加GUI效果截图。不需要写说明文档。
