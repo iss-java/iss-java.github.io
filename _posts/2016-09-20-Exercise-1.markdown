@@ -20,6 +20,8 @@ catalog:    true
 完成Java How To Program 第九版 第3.8节关于GUI的例子。对应第十版章节3.6节<br>
 两版电子书已经上传到群文件。
 
+**截止日期：(GMT+8) 2016-09-24 09:00
+
 #### (Update) Functions to test
 
 **PrintWriter**
