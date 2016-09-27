@@ -1,0 +1,17 @@
+---
+layout:     post
+title:      "Exercise 2"
+date:       2016-09-27 12:00:00
+author:     "Java Course Staff"
+header-img: "img/post1.jpg"
+header-mask: 0.3
+catalog:    true
+---
+
+## Exercise 2
+第九版教材，第五章186页`GUI and Graphics Case Study Exercises`第一题。
+对应第十版页码为189页。
+
+截止日期： **(GMT+8) 2016-10-03 09:00 (Mon)**
+
+提交方式：git。规则不再赘述。
