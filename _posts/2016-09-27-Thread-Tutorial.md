@@ -9,23 +9,20 @@ catalog:    true
 ---
 
 ## Java 线程
+
 #### 何为线程
+
 [Java Document](https://docs.oracle.com/javase/tutorial/essential/concurrency/procthread.html) 中关于进程和线程的解释，进程与线程都能提供一个执行环境。所谓执行环境，就是堆栈、代码段、数据段等内存空间，寄存器等CPU资源，以及文件描述符等I/O接口。然而两者最大的不同在于，操作系统以进程为单位分配上述系统资源，而线程必须依附于进程，只能共享进程中的资源。
 若还是模糊，推荐几篇博文增强理解：
 [进程与线程的一个简单解释](http://www.ruanyifeng.com/blog/2013/04/processes_and_threads.html)
 [进程和线程的区别](http://www.cnblogs.com/lmule/archive/2010/08/18/1802774.html)
-<br>
 
------
 #### 在Java中创建线程
-
-<br>
 
 - 继承Thread类
 	- 复写run方法
 	- 创建该类实例
 	- 调用线程实例的**start方法**，启动线程。
-<br>
 
 ```
 /**
