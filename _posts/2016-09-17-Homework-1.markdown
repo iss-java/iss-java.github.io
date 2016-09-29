@@ -55,7 +55,13 @@ a `reader-writer lock`, to improve the degree of concurrency - you will get extr
 
 **Requirement A**
 
-> Refactor `Node` with a locking(synchronization) mechanism you like. Ensure that the `data` field of a `Node` will not be corrupted if read/written by multiple threads. Also, write a test case in `Main_A.main()` which starts multiple threads to read/write the same node.
+_Updated at 2016-09-29 >>>_
+
+> Write a test case in `Main_A.main()` which starts multiple threads to read/write the same node. **不需要再给getter或setter单独上锁。** Ensure that the `data` field of a `Node` will not be corrupted if read/written by multiple threads.
+
+感谢**@隗泽浩**同学的指正：写代码的时候，单独的get/set往往不是一个完整的业务，一个完整的业务是get-compute-set。上锁要上给一个完整的业务，因此给get或set单独上锁是没有意义的。
+
+_Updated at 2016-09-29 <<<_
 
 Hint for Requirement A: You can create multiple threads to increase/decrease the value of `data`. If the final result of `data` is mathematically correct, then your program must be correct.
 
