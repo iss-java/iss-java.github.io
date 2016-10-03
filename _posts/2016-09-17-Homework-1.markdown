@@ -55,13 +55,13 @@ a `reader-writer lock`, to improve the degree of concurrency - you will get extr
 
 **Requirement A**
 
-_Updated at 2016-09-29 >>>_
+_ Updated at 2016-09-29 >\>\> _
 
 > Write a test case in `Main_A.main()` which starts multiple threads to read/write the same node. **不需要再给getter或setter单独上锁。** Ensure that the `data` field of a `Node` will not be corrupted if read/written by multiple threads.
 
 感谢**@隗泽浩**同学的指正：写代码的时候，单独的get/set往往不是一个完整的业务，一个完整的业务是get-compute-set。上锁要上给一个完整的业务，因此给get或set单独上锁是没有意义的。
 
-_Updated at 2016-09-29 <<<_
+_ Updated at 2016-09-29 <\<\< _
 
 Hint for Requirement A: You can create multiple threads to increase/decrease the value of `data`. If the final result of `data` is mathematically correct, then your program must be correct.
 
@@ -70,6 +70,12 @@ Hint for Requirement A: You can create multiple threads to increase/decrease the
 > Refactor `MyList` with a locking mechanism you like. Ensure that the data structure of the doubly-linked list will not be corrupted if some nodes are inserted/removed simultaneously by multiple threads. Also, write a test case in `Main_B.main()` which starts multiple threads to insert into / remove from the same list.
 
 Hint for Requirement B: Traverse and back-traverse your list to check whether or not your list is broken.
+
+_ Updated at 2016-10-03 >\>\> _
+
+如果大家想以**细化锁粒度**的方式来提高并发度，可以放宽锁的限制，任何代码段都可以上锁。感谢**@王宾鲁**同学的积极研究。
+
+_ Updated at 2016-10-03 <\<\< _
 
 **Requirement C**
 
