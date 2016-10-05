@@ -51,6 +51,8 @@ You are expected to read about how the following things are done in Java.
 At least, you have to master the usage of `Mutex`. If you apply an advanced synchronization mechanism, such as 
 a `reader-writer lock`, to improve the degree of concurrency - you will get extra credits.
 
+建议阅读《Java编程思想》第四版中Concurrency（并发）那一章。我们也推出了多线程编程的入门教程，[传送门](https://iss-java.github.io/2016/09/27/Thread-Tutorial/)。
+
 #### Requirements
 
 **Requirement A**
