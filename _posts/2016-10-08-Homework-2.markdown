@@ -10,6 +10,8 @@ catalog:    true
 
 # homework_2
 
+<font size=24>Due: (GMT+8) 2016-10-30 09:00</font>
+
 ## Part 1: Image Processing
 
 You are encouraged to manipulate images via Java Image IO at the pixel level. An RGB image is composed of a matrix of pixels. Each pixel can be regarded as a three-dimension vector `(r, g, b)`. For some images with transparent pixels (e.g. some PNG images), the vector will be in four-dimension, `(r, g, b, a)`, where `a` represents `alpha`.
