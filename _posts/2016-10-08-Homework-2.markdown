@@ -10,7 +10,7 @@ catalog:    true
 
 # homework_2
 
-<font size=24>Due: (GMT+8) 2016-10-30 09:00</font>
+<font size=24>Due: (GMT+8) 2016-10-23 09:00</font>
 
 ## Part 1: Image Processing
 
