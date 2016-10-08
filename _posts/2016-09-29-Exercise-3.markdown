@@ -1,0 +1,36 @@
+---
+layout:     post
+title:      "Exercise 3"
+date:       2016-09-29 11:00:00
+author:     "Java Course Staff"
+header-img: "img/post1.jpg"
+header-mask: 0.3
+catalog:    true
+---
+
+# Exercise 3
+
+<font size=24>Due: (GMT+8) 2016-10-13 09:00</font>
+
+## Requirements
+
+写一个程序实现如下功能:
+
+- 能从txt文件中读取一个含有“学生姓名、学号、语文、数学、英语、物理、化学”字段的学生成绩表（成绩表需自制，可以在excel中另存为txt）。
+- 自制学生名册，存为txt文件。从txt文件中读取学生的姓名和学号，把这些姓名添加到第一步的成绩单中。
+- 在成绩单中，随机生成[50, 100]之间的数，填写到第一步的成绩单中。
+- 计算每门课的平均成绩。
+- 计算每个学生的总成绩。
+- 按照总成绩对成绩单重新排序。
+- 把排序后的成绩输出为txt或csv文件。如果是txt，一定要符合csv格式。
+
+## Submission
+
+- 源码
+- 成绩单
+- 学生名单
+- 排序后的成绩单（csv或txt，要符合csv格式）
+
+## Notes
+
+如果自己实现了O(N*logN)复杂度的排序算法，此题可以加满。
