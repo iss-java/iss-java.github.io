@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Java Thread Tutorial"
+title:      "Homework 2"
 date:       2016-10-08 11:00:00
 author:     "Java Course Staff"
 header-img: "img/post1.jpg"
@@ -8,7 +8,7 @@ header-mask: 0.3
 catalog:    true
 ---
 
-# Homework 2
+# homework_2
 
 ## Part 1: Image Processing
 
@@ -39,6 +39,7 @@ You are expected to complete all the following three objectives.
 3. You will get bonus points if you apply a more advanced interpolation algorithm.
 4. Encapsulate codes for cutting, shrinking and enlarging into individual methods or classes.
 5. Only BMP, JPG(JPEG) and PNG images are allowed.
+6. The git remote repository should be named as `homework_2`.
 
 #### Hint
 
