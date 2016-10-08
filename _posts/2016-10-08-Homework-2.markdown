@@ -1,0 +1,81 @@
+---
+layout:     post
+title:      "Java Thread Tutorial"
+date:       2016-10-08 11:00:00
+author:     "Java Course Staff"
+header-img: "img/post1.jpg"
+header-mask: 0.3
+catalog:    true
+---
+
+# Homework 2
+
+## Part 1: Image Processing
+
+You are encouraged to manipulate images via Java Image IO at the pixel level. An RGB image is composed of a matrix of pixels. Each pixel can be regarded as a three-dimension vector `(r, g, b)`. For some images with transparent pixels (e.g. some PNG images), the vector will be in four-dimension, `(r, g, b, a)`, where `a` represents `alpha`.
+
+#### Prerequisities
+
+Before engaging with those objectives above, you should Baidu or Google the usage of Java ImageIO. You can also read the [API document](https://docs.oracle.com/javase/8/docs/api/javax/imageio/ImageIO.html) to get an idea of how to manipulate pixels.
+
+
+#### Objectives
+
+You are expected to complete all the following three objectives.
+
+- A: Cut an image.
+- B: zoom out (shrink) an image.
+- C: zoom in (enlarge) an image.
+
+#### Submission
+
+- All input and output image files.
+- The entire source code.
+
+#### Attention
+
+1. Encapsulated resize methods and rotate methods are not allowed. 
+2. When you are enlarging an image, you are required to apply an interpolation(插值) algorithm, such as `Bilinear Interpolation`(双线性插值), to serve for `anti-aliasing`(抗锯齿).
+3. You will get bonus points if you apply a more advanced interpolation algorithm.
+4. Encapsulate codes for cutting, shrinking and enlarging into individual methods or classes.
+5. Only BMP, JPG(JPEG) and PNG images are allowed.
+
+#### Hint
+
+- [Bilinear Interpolation 双线性插值](https://en.wikipedia.org/wiki/Bilinear_interpolation)
+- [Other Interpolation Methods](https://en.wikipedia.org/wiki/Bilinear_interpolation#See_also)
+
+## PART 2 Microsoft Office Document Processing via Apache POI
+
+poi poi poi ~
+
+Part 2 encourages you to manipulate a Microsoft Office document (**either Microsoft Word or Microsoft Excel, you are free to choose one of them**) via Apache POI.
+
+Apache POI is an open-source project which is a collection of Java libraries designated to Office Processing. Click here for the project [homepage](http://poi.apache.org).
+
+A **video** will be posted to tell you how to add the POI libraries to your project dependency.
+
+#### Requirements for Word processing
+
+If you choose to process a Word document, you are expected to achieve the following 4 goals. You may need a tutorial. [Click here](http://elim.iteye.com/blog/2031335).
+
+- Compute the total number of characters;
+- Compute the total number of paragraphs;
+- Gather the hierarchy of titles & subtitles;
+- Replace a string pattern everywhere it appears in the document;
+
+#### Requirements for Excel processing
+
+Apache POI is extremely powerful in manipulating Excel documents. 
+
+If you choose to process an Excel document, you are expected to achieve the following 5 goals. You may need a tutorial here. [Click here](http://www.cnblogs.com/LiZhiW/p/4313789.html?utm_source=tuicool&utm_medium=referral).
+
+- Read cells;
+- Set the format of a cell;
+- Merge cells (合并单元格);
+- Change alignment;
+- Set a formula for a cell.
+
+#### Submission
+
+For either alternative, you should submit the source code, the input word/excel document, and the output word/excel document.
