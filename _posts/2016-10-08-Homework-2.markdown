@@ -36,7 +36,7 @@ You are expected to complete all the following three objectives.
 
 #### Attention
 
-1. Encapsulated resize methods and rotate methods are not allowed. 
+1. Encapsulated resize methods are not allowed. 
 2. When you are enlarging an image, you are required to apply an interpolation(插值) algorithm, such as `Bilinear Interpolation`(双线性插值), to serve for `anti-aliasing`(抗锯齿).
 3. You will get bonus points if you apply a more advanced interpolation algorithm.
 4. Encapsulate codes for cutting, shrinking and enlarging into individual methods or classes.
