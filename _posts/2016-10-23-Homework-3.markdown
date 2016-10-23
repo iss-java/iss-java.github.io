@@ -357,7 +357,7 @@ public class Fingerprint {
         int[] freqPeaks = new int[N];
 
         /**
-         * TODO: Find three frequencies with the highest amplitude(energy);
+         * TODO: Find N frequencies with the highest amplitude(energy);
          */
 
         constel_data.add(freqPeaks);
