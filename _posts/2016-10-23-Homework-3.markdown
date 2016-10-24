@@ -125,7 +125,7 @@ subplot(2,1,1), plot(a./32768); subplot(2,1,2), plot(b);
 
 会出现这样的一个图表：
 
-![Matlab](/img/Matlab.png)
+![Matlab](/img/hw3/Matlab.png)
 
 上面是你自己算出来的，下面是Matlab读出来的。如果你的和Matlab的波形是一样的，就说明文件读取成功了。
 
