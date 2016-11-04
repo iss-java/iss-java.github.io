@@ -115,7 +115,7 @@ a = a(:,1);
 之后在Matlab中直接读取原音频，生成变量b。
 
 ``` Matlab
-[b sr] = audioread('音频目录'); b = b';
+[b sr] = audioread('音频目录');
 ```
 
 b是时序数据，sr是采样率。
