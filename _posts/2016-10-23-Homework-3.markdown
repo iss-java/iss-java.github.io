@@ -94,24 +94,23 @@ catalog:    true
 
 建议自己截一段几秒十几秒的音乐来验证，不要用整首歌，太大了。
 
-首先，把算出来的double数组打印到文件，打成`[ d1 d2 ...... dn ]`的格式。
+** 2016-11-04 更新 **
+
+首先，把算出来的double数组打印到csv文件。
 
 ``` Java
-PrintWriter out = new PrintWriter(new FileWriter(new File("test.txt")));
-out.print("[ ");
+PrintWriter out = new PrintWriter(new FileWriter(new File("test.csv")));
 for (int i=0; i < sequence.length; ++i) {
-	out.printf("%.2f ", sequence[i]);
+	out.printf("%.2f,\n", sequence[i]);
 }
-out.println("];");
 ```
 
 打出来的内容就是Matlab中的一个数组变量. 之后在Matlab中输入
 
 ``` Matlab
-a = PASTE
+a = csvread('test.csv');
+a = a(:,1);
 ```
-
-其中，PASTE为test.txt全选复制的内容。这样就在Matlab中定义了数组变量a。
 
 之后在Matlab中直接读取原音频，生成变量b。
 
@@ -133,196 +132,142 @@ subplot(2,1,1), plot(a./32768); subplot(2,1,2), plot(b);
 
 上面是你自己算出来的，下面是Matlab读出来的。如果你的和Matlab的波形是一样的，就说明文件读取成功了。
 
-#### 傅里叶代码
+#### 傅里叶代码(2016-11-04)
 
-首先是Java的复数类
+表扬提早入手的同学，也恳请大家原谅我的疏忽：没有检查网上代码的正确性而给大家带来不便。
+
+这次的代码是完全忠于算法导论实现的。有兴趣的可以参照算法导论的中英讲解。
+
+#### 复数类
 
 ``` Java
-class Complex {
-    private final double re;   // the real part
-    private final double im;   // the imaginary part
-
-    // create a new object with the given real and imaginary parts
-    public Complex(double real, double imag) {
-        re = real;
-        im = imag;
+public class Complex {
+    private double a, b;
+    public Complex(double _a, double _b) {
+        a = _a;
+        b = _b;
+    }
+    public Complex() {
+        a = 0;
+        b = 0;
     }
 
-    // a static version of plus
-    public static Complex plus(Complex a, Complex b) {
-        double real = a.re + b.re;
-        double imag = a.im + b.im;
-        Complex sum = new Complex(real, imag);
-        return sum;
+    public Complex add(final Complex e) {
+        return new Complex(a + e.a, b + e.b);
     }
 
-    // return a string representation of the invoking Complex object
-    public String toString() {
-        if (im == 0) return re + "";
-        if (re == 0) return im + "i";
-        if (im < 0) return re + " - " + (-im) + "i";
-        return re + " + " + im + "i";
+    public Complex sub(final Complex e) {
+        return new Complex(a - e.a, b - e.b);
     }
 
-    // return abs/modulus/magnitude and angle/phase/argument
+    public Complex mul(final Complex e) {
+        return new Complex (a * e.a - b * e.b, a * e.b + b * e.a);
+    }
+
     public double abs() {
-        return Math.hypot(re, im);
-    }  // Math.sqrt(re*re + im*im)
-
-    public double phase() {
-        return Math.atan2(im, re);
-    }  // between -pi and pi
-
-    // return a new Complex object whose value is (this + b)
-    public Complex plus(Complex b) {
-        Complex a = this;             // invoking object
-        double real = a.re + b.re;
-        double imag = a.im + b.im;
-        return new Complex(real, imag);
-    }
-
-    // return a new Complex object whose value is (this - b)
-    public Complex minus(Complex b) {
-        Complex a = this;
-        double real = a.re - b.re;
-        double imag = a.im - b.im;
-        return new Complex(real, imag);
-    }
-
-    // return a new Complex object whose value is (this * b)
-    public Complex times(Complex b) {
-        Complex a = this;
-        double real = a.re * b.re - a.im * b.im;
-        double imag = a.re * b.im + a.im * b.re;
-        return new Complex(real, imag);
-    }
-
-    // scalar multiplication
-    // return a new object whose value is (this * alpha)
-    public Complex times(double alpha) {
-        return new Complex(alpha * re, alpha * im);
-    }
-
-    // return a new Complex object whose value is the conjugate of this
-    public Complex conjugate() {
-        return new Complex(re, -im);
-    }
-
-    // return a new Complex object whose value is the reciprocal of this
-    public Complex reciprocal() {
-        double scale = re * re + im * im;
-        return new Complex(re / scale, -im / scale);
-    }
-
-    // return the real or imaginary part
-    public double re() {
-        return re;
-    }
-
-    public double im() {
-        return im;
-    }
-
-    // return a / b
-    public Complex divides(Complex b) {
-        Complex a = this;
-        return a.times(b.reciprocal());
-    }
-
-    // return a new Complex object whose value is the complex exponential of this
-    public Complex exp() {
-        return new Complex(Math.exp(re) * Math.cos(im), Math.exp(re) * Math.sin(im));
-    }
-
-    // return a new Complex object whose value is the complex sine of this
-    public Complex sin() {
-        return new Complex(Math.sin(re) * Math.cosh(im), Math.cos(re) * Math.sinh(im));
-    }
-
-    // return a new Complex object whose value is the complex cosine of this
-    public Complex cos() {
-        return new Complex(Math.cos(re) * Math.cosh(im), -Math.sin(re) * Math.sinh(im));
-    }
-
-    // return a new Complex object whose value is the complex tangent of this
-    public Complex tan() {
-        return sin().divides(cos());
+        // use hypot instead of sqrt(pow(a, 2), pow(b, 2))
+        // to improve performance
+        return Math.hypot(a, b);
     }
 }
 ```
 
-然后是Java的FFT代码。这个代码内存利用率不高，在数据较大时经常触发cache miss和换页。
+#### Bit Reverse函数
+
+做【基-2】傅里叶变换之前，要先按照（无符号）逆比特序交换下标。具体原因请查阅算法导论。
+
+这里简单说一下什么是逆比特序：就是把下标为无符号整数a和b的两个数组元素交换位置，其中b的比特是a的倒序比特。
 
 ``` Java
-public class FFT {
+private static void bit_reverse(Complex[] y) {
+    int i, j, k;
+    for (i = 1, j = y.length / 2; i < y.length - 1; ++i) {
+        if (i < j) {
+            Complex temp = y[i];
+            y[i] = y[j];
+            y[j] = temp;
+        }
+        k = y.length / 2;
+        while (j >= k) {
+            j -= k;            // eliminate leading 1.
+            k /= 2;
+            if (k == 0)        // cutting branches.
+                break;
+        }
+        if (j < k)             // add leading 1.
+            j += k;
+    }
+}
+```
 
-    public static final int WINDOW_SIZE = 4096;
+#### FFT主体函数
+
+关键词：旋转因子、蝴蝶变换
+
+``` Java
+private static Complex[] fft(Complex[] y){
+    bit_reverse(y);
+    int j, k, h;
+    for (h = 2; h <= y.length; h <<= 1) {
+        // twiddle factor 旋转因子
+        Complex omega_n = new Complex(Math.cos(-2 * Math.PI / h), Math.sin(-2 * Math.PI / h));
+        for (j = 0; j < y.length; j += h) {
+            Complex omega = new Complex(1, 0);
+            // butterfly transformation
+            for (k = j; k < j + h / 2; ++k) {
+                Complex  u = y[k];
+                Complex  t = omega.mul(y[k + h / 2]);
+                      y[k] = u.add(t);
+                y[k + h/2] = u.sub(t);
+                     omega = omega.mul(omega_n);
+            }
+        }
+    }
+    return y;
+}
+```
+
+#### FFT最后一步
+
+每个复数的模（绝对值）和振幅是正相关的
+
+``` Java
+public static final WINDOW_SIZE = 4096;
+
+public static double[] fft(double[] slice) {
+    if (slice.length != WINDOW_SIZE)
+        throw new RuntimeException("FFT::fft(double[] slice) - " +
+                "The window size is not equal to the required window size (" + WINDOW_SIZE + ")");
+
+    Complex[] x = new Complex[WINDOW_SIZE];
 
     /**
-     * Perform FFT on a 4096-sample slice.
-     * For a 44100 Hz audio, the slice is 4096/44100 sec, nearly 0.1s.
-     * NOTE: The scale of the returned frequencies is 44100/4096 times of the array index.
-     *
-     * @param slice  An audio frame (time-domain) with 4096 samples.
-     * @return       The energy of "each frequency".
+     * Convert the time-domain series as Complex series whose imaginary parts are zeros.
      */
-    public static double[] fft(double[] slice) {
-        if (slice.length != WINDOW_SIZE)
-            throw new RuntimeException("FFT::fft(double[] slice) - " +
-                    "The window size is not equal to the required window size (" + WINDOW_SIZE + ")");
+    for (int i = 0; i < WINDOW_SIZE; ++i) {
+        x[i] = new Complex(slice[i], 0);
+    }
 
-        Complex[] x = new Complex[WINDOW_SIZE];
+    Complex[] res = fft(x);
 
+    double[] ret = new double[WINDOW_SIZE];
+    for (int i = 0; i < WINDOW_SIZE; ++i) {
         /**
-         * Convert the time-domain series as Complex series whose imaginary parts are zeros.
+         * The magnitude of each frequency.
          */
-        for (int i = 0; i < WINDOW_SIZE; ++i) {
-            x[i] = new Complex(slice[i], 0);
-        }
-
-        Complex[] res = fft(x);
-
-        double[] ret = new double[WINDOW_SIZE];
-        for (int i = 0; i < WINDOW_SIZE; ++i) {
-            /**
-             * The magnitude of each frequency.
-             */
-            ret[i] = res[i].abs();
-        }
-        return ret;
+        ret[i] = res[i].abs();
     }
-
-    private static Complex[] fft(Complex[] x) {
-        int N = x.length;
-        if (N <= 1) return x;
-        // fft of even terms
-        Complex[] even = new Complex[N / 2];
-        for (int k = 0; k < N / 2; k++) {
-            even[k] = x[2 * k];
-        }
-        Complex[] q = fft(even);
-
-        // fft of odd terms
-        Complex[] odd = even; // reuse the array
-        for (int k = 0; k < N / 2; k++) {
-            odd[k] = x[2 * k + 1];
-        }
-        Complex[] r = fft(odd);
-        Complex[] y = new Complex[N];
-        for (int k = 0; k < N / 2; k++) {
-            double kth = -2 * k * Math.PI / N;
-            Complex wk = new Complex(Math.cos(kth), Math.sin(kth));
-            y[k] = q[k].plus(wk.times(r[k]));
-            y[k + N / 2] = q[k].minus(wk.times(r[k]));
-        }
-        return y;
-    }
+    return ret;
 }
 ```
 
 #### 指纹提取的部分实现
 
-代码中append函数内部有一个TODO，这一块是找出每一帧音频中能量最高的N个频率，要自己实现。
+代码中append函数内部有一个TODO，这一块是找出每一帧音频中能量**较高**的N个频率，要自己实现。
+
+** 2016-11-04 补充说明 **
+
+既可以使用N最值法，也可以使用分块最值法。采用N最值法的如果用O(n)复杂度算法，有分数奖励。
 
 ``` Java
 public class Fingerprint {
@@ -361,7 +306,8 @@ public class Fingerprint {
         int[] freqPeaks = new int[N];
 
         /**
-         * TODO: Find N frequencies with the highest amplitude(energy);
+         * TODO: Either find N frequencies with the highest amplitude(energy),
+         * or find the frequency with the max energy within each interval.
          */
 
         constel_data.add(freqPeaks);
